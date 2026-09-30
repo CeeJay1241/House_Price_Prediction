@@ -19,7 +19,7 @@ def load_california(save_csv: str | None = None, sample_n: int | None = None) ->
     Returns DataFrame with features and target column `MedHouseVal`.
     """
     bunch = fetch_california_housing(as_frame=True)
-    df = pd.concat([bunch.frame.drop(columns=[]), bunch.target.rename("MedHouseVal")], axis=1)
+    df = pd.concat([bunch.data, bunch.target.rename("MedHouseVal")], axis=1)
     if sample_n:
         df = df.sample(min(sample_n, len(df)), random_state=42)
     if save_csv:
